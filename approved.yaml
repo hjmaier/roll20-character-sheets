@@ -924,6 +924,12 @@ dragoncry:
   - "Dragoncry"
   - "Dragoncry"
 
+#DRAGON WARRIORS
+dragonwarriors:
+  - "Dragon Warriors"
+  - "Dragon Warriors Revised"
+  - "Dragon Warriors"
+
 #DRAMASYSTEM
 dramasystem:
   - "Dramasystem"
@@ -1590,10 +1596,6 @@ gurpsstyletwo:
   - "GURPS (Style #2)"
   - "GURPS"
 
-supersrevisededition:
-  - "Supers-Revised-Edition"
-  - "Supers Revised Edition"
-  - "Supers Revised Edition"
 
 #HACKMASTER
 hackmaster5e:
@@ -3160,6 +3162,12 @@ strike:
   - "Strike!"
   - "Strike!"
   - "Strike!"
+
+#Supers
+supersrevisededition:
+  - "Supers-Revised-Edition"
+  - "Supers Revised Edition"
+  - "Supers Revised Edition"
 
 #SVAVELVINTER
 svavelvinter:
