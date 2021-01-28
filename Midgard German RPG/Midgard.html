@@ -964,21 +964,21 @@
 			<label>Prüfwürfe</label><input type="checkbox" class="checkbox" value="1"
 				name="attr_popupflagPW" /><br />
 				<label>Glückswurf</label><input type="checkbox" class="checkbox" value="1"
-				name="attr_popupflagGlück" /><br />				
+				name="attr_popupflagGlück" /><br />
 			<label>Fertigkeiten</label><input type="checkbox" class="checkbox" value="1"
-				name="attr_popupflagEWFert" /><br />		
+				name="attr_popupflagEWFert" /><br />
 			<label>Sprachen</label><input type="checkbox" class="checkbox" value="1"
-				name="attr_popupflagEWSprachen" /><br />							
+				name="attr_popupflagEWSprachen" /><br />
 			<label>Sinne</label><input type="checkbox" class="checkbox" value="1"
-				name="attr_popupflagEWSinn" /><br />					
+				name="attr_popupflagEWSinn" /><br />
 			<label>Zauber</label><input type="checkbox" class="checkbox" value="1"
-				name="attr_popupflagEWZauber" /><br />	
+				name="attr_popupflagEWZauber" /><br />
 			<label>Angriff</label><input type="checkbox" class="checkbox" value="1"
-				name="attr_popupflagEWAngriff" /><br />					
+				name="attr_popupflagEWAngriff" /><br />
 			<label>Abwehr</label><input type="checkbox" class="checkbox" value="1"
-				name="attr_popupflagWWAbwehr" /><br />					
+				name="attr_popupflagWWAbwehr" /><br />
 			<label>Resistenz</label><input type="checkbox" class="checkbox" value="1"
-				name="attr_popupflagWWResi" /><br />					
+				name="attr_popupflagWWResi" /><br />
 		</div>
 		<div class="col">
 
@@ -1328,7 +1328,7 @@
 </div>
  -->
 <script type="text/worker">
-	const SheetVersion = "3";
+	const SheetVersion = "4";
 	const buttonlist = ["Datenblatt", "Fertigkeiten", "Sprachen", "Zauber", "KampfK", "KampfZ", "Ausrustung", "Notizen", "NSC", "Config"];
 	buttonlist.forEach(button => {
 		on(`clicked:${button}`, function () {
@@ -1432,7 +1432,7 @@
 
 	on("change:repeating_angriff change:gSchB change:gAngB sheet:opened", function (eventinfo) {
 
-		// Loop über alle Waffen 
+		// Loop über alle Waffen
 
 		getSectionIDsOrdered("repeating_angriff", function (idarray) {
 			var setWaffe = {}; // Waffen
@@ -1455,7 +1455,7 @@
 				], function (values) {
 					var WaffeSchB = 0;
 					var WaffeEW = 0;
-					// Wenn die angelegte Waffe eine Fernkampfwaffe ist, den Schadensbonus aus den Grundattributen nicht reinrechnen. Bei Nahkampfwaffen mit reinrechnen						  
+					// Wenn die angelegte Waffe eine Fernkampfwaffe ist, den Schadensbonus aus den Grundattributen nicht reinrechnen. Bei Nahkampfwaffen mit reinrechnen
 					if (values['repeating_angriff_' + currentID + '_FKWaffe'] == true) {
 
 						WaffeSchB = (parseInt(values['repeating_angriff_' + currentID + '_WaffeSchB'], 10) || 0) + (parseInt(values.modSchaden, 10) || 0);
@@ -1512,13 +1512,13 @@
 				});
 			};
 
-			// Loop über Rüstungen und alles außer actrow entflaggen	
+			// Loop über Rüstungen und alles außer actrow entflaggen
 
 			getSectionIDsOrdered("repeating_ruestung", function (idarray) {
 				var setRustung = {}; // Fertigkeitenliste auf Kampfblatt
 
 				_.each(idarray, function (currentID, i) {
-					// Akuell getragene Rüstung holen 
+					// Akuell getragene Rüstung holen
 					getAttrs(['repeating_ruestung_' + currentID + '_RsGetragen',
 						'repeating_ruestung_' + currentID + '_RüsAnB',
 						'repeating_ruestung_' + currentID + '_RüsAbwB',
@@ -1792,7 +1792,7 @@
 
 			if (kannzaubern == false) zaubern = 3;
 
-			// Und neue Werte wegschreiben			
+			// Und neue Werte wegschreiben
 
 			setAttrs({
 				"Zaubern": zaubern,
@@ -1804,7 +1804,7 @@
 		});
 	});
 
-	// Anpassung der Boni für Leiteigenschaften und persönlicher Bonus, wenn sich das Hauptattribut ändert	
+	// Anpassung der Boni für Leiteigenschaften und persönlicher Bonus, wenn sich das Hauptattribut ändert
 
 	on('change:St change:Gw change:Gs change:Ko change:In change:Zt change:Au change:pA change:Wk change:ItemBGewandheit change:ItemBGeschick change:ItemBKonstitution change:ItemBIntelligenz change:ItemBZaubertalent change:ItemBAussehen change:ItemBpA change:ItemBWillenskraft change:ItemBStärke change:ItemBStärke change:RaKlBonusResK change:RaKlBonusResG sheet:opened', function () {
 		let Attr = 0;
@@ -1824,7 +1824,7 @@
 			CalcpBonusSchaden(values); // Schaden
 			CalcpBonusAngriff(values); // Angriff
 			CalcpBonusAbwehr(values); // Abwehr
-			CalcpBonusZaubern(values); // Abwehr			
+			CalcpBonusZaubern(values); // Abwehr
 			CalcpBonusResG(values); // Reis Geist
 			CalcpBonusResK(values); // Resi Körper
 
@@ -1947,7 +1947,7 @@
 		});
 	});
 
-	// Versionsnummer setzen und prüfeb ob konvertiert werden muss	
+	// Versionsnummer setzen und prüfeb ob konvertiert werden muss
 	on('sheet:opened', function () {
 		getAttrs(["SheetVersion"], function (values) {
 			console.log("Sheet Version alt: " + values.SheetVersion + " Sheet Version neu: " + SheetVersion);
@@ -1956,7 +1956,7 @@
 
 			if (values.SheetVersion == "1.0") {
 				console.log("Upgrade von Version 1.0");
-				RecalcKampfblattZauber();	
+				RecalcKampfblattZauber();
 				RecalcKampfblattFertigkeiten();
 				ClearFertigkeitKampfblattAlt();
 				ClearZauberKampfblattAlt();
@@ -2175,7 +2175,7 @@ function AddSinne() {
 		var setFert = {}; // Array für die Fertigkeiten
 		var newrowid = 0; // ZeilenID für Fertigkeitenblatt
 
-		// Erstmal die Sinne 		
+		// Erstmal die Sinne
 
 		setFert = setFertSinnUngelernt("repeating_sinne_", setFert, "Wahrnehmung", "6", "0");
 		setFert = setFertSinnUngelernt("repeating_sinne_",setFert, "Sehen", "6", "0");
@@ -2195,13 +2195,13 @@ function AddSinne() {
 
 		setFert[repeating + newrowid + '_Fertigkeit2'] = Name;
 		setFert[repeating + newrowid + '_FW2'] = FW;
-		setFert[repeating + newrowid + '_LeitE2'] = LeitE;	
-		
+		setFert[repeating + newrowid + '_LeitE2'] = LeitE;
+
 		return setFert;
 	};
 
 
-// Alte Repeating section auf Kampfblatt löschen. Wird ab V2 nicht mehr gebraucht		
+// Alte Repeating section auf Kampfblatt löschen. Wird ab V2 nicht mehr gebraucht
 
 function ClearFertigkeitKampfblattAlt() {
 
@@ -2214,7 +2214,7 @@ function ClearFertigkeitKampfblattAlt() {
 	});
 	};
 
-// Alte Repeating section auf Kampfblatt löschen. Wird ab V2 nicht mehr gebraucht	
+// Alte Repeating section auf Kampfblatt löschen. Wird ab V2 nicht mehr gebraucht
 	function ClearZauberKampfblattAlt() {
 
 		// Alte Werte löschen
@@ -2226,7 +2226,7 @@ function ClearFertigkeitKampfblattAlt() {
 		});
 	};
 
-	// Section IDS in der Reihenfolge lesen wie sie auf dem Blatt stehen	
+	// Section IDS in der Reihenfolge lesen wie sie auf dem Blatt stehen
 
 	var getSectionIDsOrdered = function (sectionName, callback) {
 		'use strict';
@@ -2270,8 +2270,8 @@ function ClearFertigkeitKampfblattAlt() {
 	on("clicked:zaukb", function () {
 
 		RecalcKampfblattZauber();
-	
-	});	
+
+	});
 
 // Bei Änderung der Checkbox "Fertigkeit auf Kampfblatt" den unsichtbaren Toggle für das hidden Feld setzen oder löschen
 
@@ -2279,10 +2279,10 @@ function ClearFertigkeitKampfblattAlt() {
 	on("clicked:fertkb", function () {
 
 		RecalcKampfblattFertigkeiten();
-	
-	});		
 
-// Änderung der Checkboxen für das an- und abschalten des Bonus-Popups	
+	});
+
+// Änderung der Checkboxen für das an- und abschalten des Bonus-Popups
 
 on("change:popupflagPW", function(eventinfo) {
 	var newPopup = 0;
@@ -2382,14 +2382,14 @@ on("change:popupflagGlück", function(eventinfo) {
 	});
 });
 
-// Fertigkeiten auf Kampfblätter neu berechnen	
+// Fertigkeiten auf Kampfblätter neu berechnen
 	function RecalcKampfblattFertigkeiten() {
 
 		getSectionIDs("repeating_fertigkeiten", function (idarray) {
 			var setFert = {}; // Fertigkeitenliste auf Kampfblatt
 
 			_.each(idarray, function (currentID, i) {
-				getAttrs(['repeating_fertigkeiten_' + currentID + '_FertKB'], function (value) { 				  
+				getAttrs(['repeating_fertigkeiten_' + currentID + '_FertKB'], function (value) {
 
 					if (value['repeating_fertigkeiten_' + currentID + '_FertKB'] == true) {
 
@@ -2401,23 +2401,23 @@ on("change:popupflagGlück", function(eventinfo) {
 						// Nict sichtbar auf Kampfblatt
 
 						setFert['repeating_fertigkeiten_' + currentID + '_repeating_show'] = "0";
-						
+
 					};
 					setAttrs(setFert); //Update
 				});
 			});
-		});	
+		});
 
-	};	
+	};
 
-// Zauber auf Kampfblätter neu berechnen	
+// Zauber auf Kampfblätter neu berechnen
 	function RecalcKampfblattZauber() {
 
 		getSectionIDs("repeating_zauber", function (idarray) {
 			var setZaub = {}; // Zauberliste auf Kampfblatt
 
 			_.each(idarray, function (currentID, i) {
-				getAttrs(['repeating_zauber_' + currentID + '_ZauKB'], function (value) { //Get oldAttribute from FieldID				  
+				getAttrs(['repeating_zauber_' + currentID + '_ZauKB'], function (value) { //Get oldAttribute from FieldID
 
 					if (value['repeating_zauber_' + currentID + '_ZauKB'] == true) {
 
@@ -2429,12 +2429,12 @@ on("change:popupflagGlück", function(eventinfo) {
 						// Nict sichtbar auf Kampfblatt
 
 						setZaub['repeating_zauber_' + currentID + '_repeating_show'] = "0";
-						
+
 					};
 					setAttrs(setZaub); //Update
 				});
 			});
-		});	
+		});
 
-	};		
+	};
 </script>
